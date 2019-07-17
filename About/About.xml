@@ -3,7 +3,7 @@
     <name>[XND] Nocturnal Animals</name>
     <author>XeoNovaDan</author>
     <url></url>
-    <description>Work in progress.</description>
+    <description>Current version: v0.1 (17th July 2019)\n\nAdds nocturnal animal sleep cycles to the game, as well as a framework for modders to work with to make their own animals nocturnal.</description>
     <supportedVersions>
         <li>1.0</li>
     </supportedVersions>
