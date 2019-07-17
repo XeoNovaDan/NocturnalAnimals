@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+    <!-- Wolves -->
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>/Defs/ThingDef[@Name="ThingBaseWolf"]</xpath>
+        <value>
+            <li Class="NocturnalAnimals.ExtendedRaceProperties">
+                <bodyClock>Nocturnal</bodyClock>
+            </li>
+        </value>
+    </Operation>
+
+    <!-- Foxes -->
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>/Defs/ThingDef[@Name="ThingBaseFox"]</xpath>
+        <value>
+            <li Class="NocturnalAnimals.ExtendedRaceProperties">
+                <bodyClock>Nocturnal</bodyClock>
+            </li>
+        </value>
+    </Operation>
+
+</Patch>
