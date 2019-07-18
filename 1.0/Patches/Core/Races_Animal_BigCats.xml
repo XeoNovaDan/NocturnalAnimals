@@ -11,4 +11,14 @@
         </value>
     </Operation>
 
+    <!-- Lynx -->
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>/Defs/ThingDef[defName="Lynx"]</xpath>
+        <value>
+            <li Class="NocturnalAnimals.ExtendedRaceProperties">
+                <bodyClock>Nocturnal</bodyClock>
+            </li>
+        </value>
+    </Operation>
+
 </Patch>
