@@ -8,6 +8,7 @@ namespace NocturnalAnimals
     public enum BodyClock
     {
         Diurnal,
-        Nocturnal
+        Nocturnal,
+        Crepuscular
     }
 }

@@ -7,7 +7,7 @@ using Verse;
 using RimWorld;
 using System.Reflection;
 using System.Reflection.Emit;
-using Harmony;
+using HarmonyLib;
 
 namespace NocturnalAnimals
 {
@@ -16,6 +16,11 @@ namespace NocturnalAnimals
     {
 
         public BodyClock bodyClock;
+
+        public static ExtendedRaceProperties Get(Def def)
+        {
+            return def.GetModExtension<ExtendedRaceProperties>();
+        }
 
     }
 
