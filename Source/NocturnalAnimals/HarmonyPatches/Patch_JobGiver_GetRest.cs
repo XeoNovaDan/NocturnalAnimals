@@ -7,7 +7,7 @@ using Verse;
 using RimWorld;
 using System.Reflection;
 using System.Reflection.Emit;
-using Harmony;
+using HarmonyLib;
 
 namespace NocturnalAnimals
 {
@@ -15,8 +15,7 @@ namespace NocturnalAnimals
     public static class Patch_JobGiver_GetRest
     {
         
-        [HarmonyPatch(typeof(JobGiver_GetRest))]
-        [HarmonyPatch(nameof(JobGiver_GetRest.GetPriority))]
+        [HarmonyPatch(typeof(JobGiver_GetRest), nameof(JobGiver_GetRest.GetPriority))]
         public static class Patch_GetPriority
         {
 
@@ -30,20 +29,21 @@ namespace NocturnalAnimals
                     var instruction = instructionList[i];
 
                     // Effectively turn 'if (num < 7 || num > 21)' into 'if (SleepHourFor(num, pawn))'
-                    if (!done && instruction.opcode == OpCodes.Stloc_3)
+                    //Log.Message(instruction.operand?.GetType()?.ToStringSafe());
+                    if (!done && instruction.opcode == OpCodes.Ldloc_S && ((LocalBuilder)instruction.operand).LocalIndex == 4)
                     {
                         yield return instruction; // int num = GenLocalDate.HourOfDay(pawn)
-                        yield return new CodeInstruction(OpCodes.Ldloc_3); // num
                         yield return new CodeInstruction(OpCodes.Ldarg_1); // pawn
                         yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Patch_GetPriority), nameof(SleepHourFor))); // SleepHourFor(num, pawn)
 
                         int j = 1;
                         while (true)
                         {
-                            if (instructionList[i + j].opcode == OpCodes.Ble)
+                            if (instructionList[i + j].opcode == OpCodes.Ble_S)
                             {
                                 instruction = new CodeInstruction(OpCodes.Brfalse, instructionList[i + j].operand);
                                 instructionList[i + j] = new CodeInstruction(OpCodes.Nop);
+                                done = true;
                                 break;
                             }
                             instructionList[i + j] = new CodeInstruction(OpCodes.Nop);
@@ -57,14 +57,27 @@ namespace NocturnalAnimals
 
             public static bool SleepHourFor(int hour, Pawn pawn)
             {
-                var extendedRaceProps = pawn.def.GetModExtension<ExtendedRaceProperties>();
+                var extendedRaceProps = ExtendedRaceProperties.Get(pawn.def);
 
-                // Diurnal
-                if (extendedRaceProps == null || extendedRaceProps.bodyClock == BodyClock.Diurnal)
-                    return hour < 7 || hour > 21;
+                if (extendedRaceProps != null)
+                {
+                    switch (extendedRaceProps.bodyClock)
+                    {
+                        case BodyClock.Diurnal:
+                            return hour < 7 || hour > 21;
 
-                // Nocturnal
-                return hour > 9 && hour < 19;
+                        case BodyClock.Crepuscular:
+                            return hour > 21 || hour < 2 || (hour > 10 && hour < 15);
+
+                        case BodyClock.Nocturnal:
+                            return hour > 10 && hour < 19;
+
+                        default:
+                            throw new NotImplementedException();
+                    }
+                }
+
+                return hour < 7 || hour > 21;
             }
 
         }

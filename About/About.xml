@@ -2,9 +2,10 @@
 <ModMetaData>
     <name>[XND] Nocturnal Animals</name>
     <author>XeoNovaDan</author>
-    <url>https://ludeon.com/forums/index.php?topic=29503.0</url>
-    <description>Current version: v1.0 (17th July 2019)\n\nAdds nocturnal animal sleep cycles to the game, as well as a framework for modders to work with to make their own animals nocturnal.</description>
+    <packageId>XeoNovaDan.NocturnalAnimals</packageId>
+    <url></url>
+    <description>Current version: v1.0 (21st February 2020)\n\nAdds nocturnal and crepuscular animal sleeping cycles.</description>
     <supportedVersions>
-        <li>1.0</li>
+        <li>1.1</li>
     </supportedVersions>
 </ModMetaData>

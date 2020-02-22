@@ -7,7 +7,7 @@ using Verse;
 using RimWorld;
 using System.Reflection;
 using System.Reflection.Emit;
-using Harmony;
+using HarmonyLib;
 
 namespace NocturnalAnimals
 {
@@ -18,8 +18,8 @@ namespace NocturnalAnimals
         
         static HarmonyPatches()
         {
-            var h = HarmonyInstance.Create("XeoNovaDan.NocturnalAnimals");
-            h.PatchAll();
+            //Harmony.DEBUG = true;
+            NocturnalAnimals.HarmonyInstance.PatchAll();
         }
 
     }
