@@ -16,7 +16,7 @@
         <xpath>/Defs/ThingDef[@Name="ThingBaseFox"]</xpath>
         <value>
             <li Class="NocturnalAnimals.ExtendedRaceProperties">
-                <bodyClock>Nocturnal</bodyClock>
+                <bodyClock>Crepuscular</bodyClock>
             </li>
         </value>
     </Operation>
