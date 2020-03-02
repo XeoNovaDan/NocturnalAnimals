@@ -17,6 +17,10 @@ namespace NocturnalAnimals
 
         public NocturnalAnimals(ModContentPack content) : base(content)
         {
+            #if DEBUG
+                Log.Error("XeoNovaDan left debugging enabled in Nocturnal Animals - please let him know!");
+            #endif
+
             HarmonyInstance = new Harmony("XeoNovaDan.NocturnalAnimals");
         }
 

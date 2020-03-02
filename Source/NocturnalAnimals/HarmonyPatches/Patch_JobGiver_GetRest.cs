@@ -21,6 +21,10 @@ namespace NocturnalAnimals
 
             public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
             {
+                #if DEBUG
+                    Log.Message("Transpiler start: JobGiver_GetRest.GetPriority (2 matches)");
+                #endif
+
                 var instructionList = instructions.ToList();
                 bool done = false;
 
@@ -32,6 +36,10 @@ namespace NocturnalAnimals
                     //Log.Message(instruction.operand?.GetType()?.ToStringSafe());
                     if (!done && instruction.opcode == OpCodes.Ldloc_S && ((LocalBuilder)instruction.operand).LocalIndex == 4)
                     {
+                        #if DEBUG
+                            Log.Message("JobGiver_GetRest.GetPriority match 1 of 2");
+                        #endif
+
                         yield return instruction; // int num = GenLocalDate.HourOfDay(pawn)
                         yield return new CodeInstruction(OpCodes.Ldarg_1); // pawn
                         yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Patch_GetPriority), nameof(SleepHourFor))); // SleepHourFor(num, pawn)
@@ -41,6 +49,10 @@ namespace NocturnalAnimals
                         {
                             if (instructionList[i + j].opcode == OpCodes.Ble_S)
                             {
+                                #if DEBUG
+                                    Log.Message("JobGiver_GetRest.GetPriority match 2 of 2");
+                                #endif
+
                                 instruction = new CodeInstruction(OpCodes.Brfalse, instructionList[i + j].operand);
                                 instructionList[i + j] = new CodeInstruction(OpCodes.Nop);
                                 done = true;

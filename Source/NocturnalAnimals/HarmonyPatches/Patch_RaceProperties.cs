@@ -22,13 +22,8 @@ namespace NocturnalAnimals
             public static void Postfix(ThingDef parentDef, ref IEnumerable<StatDrawEntry> __result)
             {
                 // Body clock
-                BodyClock bodyClock = default;
-                var extendedRaceProps = ExtendedRaceProperties.Get(parentDef);
-                if (extendedRaceProps != null)
-                    bodyClock = extendedRaceProps.bodyClock;
-
-                __result = __result.AddItem(new StatDrawEntry(StatCategoryDefOf.BasicsPawn, "NocturnalAnimals.BodyClock".Translate(), $"NocturnalAnimals.BodyClock_{bodyClock}".Translate(),
-                    "NocturnalAnimals.BodyClock_Description".Translate(), 2500));
+                __result = __result.AddItem(new StatDrawEntry(StatCategoryDefOf.BasicsPawn, "NocturnalAnimals.BodyClock".Translate(),
+                    $"NocturnalAnimals.BodyClock_{ExtendedRaceProperties.Get(parentDef).bodyClock}".Translate(), "NocturnalAnimals.BodyClock_Description".Translate(), 2500));
             }
 
         }
