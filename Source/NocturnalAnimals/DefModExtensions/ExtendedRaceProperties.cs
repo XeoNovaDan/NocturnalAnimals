@@ -17,7 +17,7 @@ namespace NocturnalAnimals
 
         public BodyClock bodyClock;
 
-        private static readonly ExtendedRaceProperties defaultValues;
+        private static readonly ExtendedRaceProperties defaultValues = new ExtendedRaceProperties();
 
         public static ExtendedRaceProperties Get(Def def)
         {
