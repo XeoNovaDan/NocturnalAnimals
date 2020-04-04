@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+    <NocturnalAnimals.BodyClock>Биологические часы</NocturnalAnimals.BodyClock>
+    <NocturnalAnimals.BodyClock_Description>Естественный режим сна этого существа.\n\nДневные существа бодрствуют днем, ночные - ночью, а сумеречные - утром и вечером.</NocturnalAnimals.BodyClock_Description>
+    
+    <NocturnalAnimals.BodyClock_Diurnal>Дневной образ жизни</NocturnalAnimals.BodyClock_Diurnal>
+    <NocturnalAnimals.BodyClock_Nocturnal>Ночной образ жизни</NocturnalAnimals.BodyClock_Nocturnal>
+    <NocturnalAnimals.BodyClock_Crepuscular>Сумеречный образ жизни</NocturnalAnimals.BodyClock_Crepuscular>
+
+</LanguageData>
